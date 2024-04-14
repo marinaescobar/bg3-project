@@ -4,7 +4,7 @@ import numpy as np
 from bs4 import BeautifulSoup
 import requests
 
-def weapons_list (url):
+def get_list (url):
     
     response = requests.get(url)
     html = response.text
