@@ -21,6 +21,7 @@ def armor_details (armor_list):
     armors_data = {'Name': [],
                     'Description' : [],
                     'Class': [],
+                    'Modifier' : [],
                     'Type': [],
                     'Required Proficiency' : [],
                     'Rarity' : [],
@@ -78,6 +79,17 @@ def armor_details (armor_list):
             armors_data['Class'].append(armor_class)
         except:
             armors_data['Class'].append(np.nan)
+            
+        # Modifier
+        try:
+            armor_modifier = soup.find('div', class_='bg3wiki-ac-value').text.split(' + ')
+            if ' modifier' in armor_modifier[1]:
+                armor_modifier = armor_modifier[1].replace('\n' , '').replace(' modifier', '')
+                armors_data['Modifier'].append(armor_modifier)
+            else:
+                armors_data['Modifier'].append(np.nan)
+        except:
+            armors_data['Modifier'].append(np.nan)
         
         # Getting Type
         try:
